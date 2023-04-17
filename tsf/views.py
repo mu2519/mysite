@@ -16,8 +16,13 @@ mpl.use('svg')
 
 
 def index(request: HttpRequest):
-    msft = yf.Ticker('MSFT')
-    hist = msft.history('6mo', '1d')
+    return render(request, 'tsf/index.html')
+
+
+def show(request: HttpRequest):
+    ticker = request.GET['ticker']
+    getter = yf.Ticker(ticker)
+    hist = getter.history('6mo', '1d')
     series = TimeSeries.from_series(hist['Close'], freq='D')
     series = fill_missing_values(series)
     model = ExponentialSmoothing()
@@ -35,4 +40,4 @@ def index(request: HttpRequest):
 
     idx = img.find('<svg')
     context = {'title': 'MSFT', 'svg_elem': img[idx:]}
-    return render(request, 'tsf/index.html', context)
+    return render(request, 'tsf/show.html', context)

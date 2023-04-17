@@ -5,8 +5,9 @@
         <title>{{ title }}</title>
     </head>
     <body>
-{% autoescape off %}
-{{ svg_elem }}
-{% endautoescape %}
+        <form action="show/">
+            <p><label>Ticker</label><input name="ticker"></p>
+            <p><input type="submit" value="Submit"><input type="reset" value="Reset"></p>
+        </form>
     </body>
 </html>
