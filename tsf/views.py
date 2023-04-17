@@ -1,6 +1,7 @@
 import io
 
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
 
 import yfinance as yf
 
@@ -22,12 +23,16 @@ def index(request: HttpRequest):
     model = ExponentialSmoothing()
     model.fit(series)
     pred = model.predict(10)
-    series.plot(label='history')
-    pred.plot(label='prediction')
+
+    plt.clf()
+    series.plot(label='History')
+    pred.plot(label='Prediction')
     plt.tight_layout()
     buf = io.StringIO()
     plt.savefig(buf, format='svg')
     img = buf.getvalue()
     buf.close()
-    response = HttpResponse(img, content_type='image/svg+xml')
-    return response
+
+    idx = img.find('<svg')
+    context = {'title': 'MSFT', 'svg_elem': img[idx:]}
+    return render(request, 'tsf/index.html', context)

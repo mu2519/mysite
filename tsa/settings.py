@@ -49,7 +49,7 @@ ROOT_URLCONF = 'tsa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'tsf' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
