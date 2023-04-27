@@ -1,6 +1,5 @@
 import io
 
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 import yfinance as yf
@@ -15,11 +14,11 @@ import matplotlib.pyplot as plt
 mpl.use('svg')
 
 
-def index(request: HttpRequest):
+def index(request):
     return render(request, 'tsf/index.html')
 
 
-def show(request: HttpRequest):
+def show(request):
     ticker = request.GET['ticker']
     getter = yf.Ticker(ticker)
     hist = getter.history('6mo', '1d')
