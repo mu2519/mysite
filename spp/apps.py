@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TsfConfig(AppConfig):
+class SppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'tsf'
+    name = 'spp'

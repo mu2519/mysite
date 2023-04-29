@@ -16,7 +16,7 @@ mpl.use('svg')
 
 def index(request):
     context = {'title': 'Stock Price Prediction'}
-    return render(request, 'tsf/index.html', context)
+    return render(request, 'spp/index.html', context)
 
 
 def show(request):
@@ -40,4 +40,4 @@ def show(request):
 
     idx = img.find('<svg')
     context = {'title': 'MSFT', 'svg_elem': img[idx:]}
-    return render(request, 'tsf/show.html', context)
+    return render(request, 'spp/show.html', context)
