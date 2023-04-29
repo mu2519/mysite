@@ -15,7 +15,8 @@ mpl.use('svg')
 
 
 def index(request):
-    return render(request, 'tsf/index.html')
+    context = {'title': 'Stock Price Prediction'}
+    return render(request, 'tsf/index.html', context)
 
 
 def show(request):
